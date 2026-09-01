@@ -214,16 +214,12 @@ export default function GalleryPage() {
                 >
                   <Image
                     src={galleryMoments[0].src}
-                    alt="Featured Fleet Moment"
+                    alt="Dada Green Operations"
                     fill
                     priority
                     className="object-cover"
                     sizes="300px"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <div className="absolute bottom-3 left-3 text-xs font-mono font-bold text-emerald-300">
-                    #01 • Fleet Lineup
-                  </div>
                 </div>
 
                 {/* Hero Item 2 */}
@@ -233,16 +229,12 @@ export default function GalleryPage() {
                 >
                   <Image
                     src={galleryMoments[1].src}
-                    alt="Maintenance Moment"
+                    alt="Dada Green Maintenance"
                     fill
                     priority
                     className="object-cover"
                     sizes="300px"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <div className="absolute bottom-3 left-3 text-xs font-mono font-bold text-emerald-300">
-                    #02 • Depot Servicing
-                  </div>
                 </div>
 
                 {/* Hero Item 3 */}
@@ -252,15 +244,12 @@ export default function GalleryPage() {
                 >
                   <Image
                     src={galleryMoments[2].src}
-                    alt="Operations Crew"
+                    alt="Dada Green Crew"
                     fill
                     priority
                     className="object-cover"
+                    sizes="300px"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <div className="absolute bottom-3 left-3 text-xs font-mono font-bold text-emerald-300">
-                    #03 • Operations Crew
-                  </div>
                 </div>
 
                 {/* Hero Item 4 */}
@@ -270,15 +259,12 @@ export default function GalleryPage() {
                 >
                   <Image
                     src={galleryMoments[3].src}
-                    alt="Charging Infrastructure"
+                    alt="Dada Green Charging Infrastructure"
                     fill
                     priority
                     className="object-cover"
+                    sizes="300px"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <div className="absolute bottom-3 left-3 text-xs font-mono font-bold text-emerald-300">
-                    #04 • Fast Charging
-                  </div>
                 </div>
               </div>
             </motion.div>

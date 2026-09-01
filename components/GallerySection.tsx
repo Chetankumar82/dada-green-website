@@ -188,18 +188,30 @@ export default function GallerySection() {
                 className="absolute inset-0 cursor-pointer"
                 onClick={() => setLightboxOpen(true)}
               >
+                {/* Background ambient glow matching current image */}
+                <Image
+                  src={currentPhoto.src}
+                  alt=""
+                  fill
+                  priority
+                  quality={30}
+                  className="object-cover blur-2xl scale-110 opacity-40 select-none pointer-events-none"
+                  aria-hidden="true"
+                />
+
+                {/* Foreground Full Uncropped Photo */}
                 <Image
                   src={currentPhoto.src}
                   alt={currentPhoto.alt}
                   fill
                   priority
-                  quality={90}
-                  className="object-cover"
+                  quality={95}
+                  className="object-contain relative z-10 select-none"
                   sizes="(max-width: 768px) 100vw, 1400px"
                 />
 
                 {/* Subtle top fullscreen button */}
-                <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10">
+                <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20">
                   <button
                     type="button"
                     onClick={(e) => {
