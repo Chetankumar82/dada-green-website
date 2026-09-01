@@ -19,7 +19,7 @@ const faqs = [
   {
     question: "Which companies and partners does Dada Green work with?",
     answer:
-      "We work with industry leaders including Olectra, Envy Trans, Varde Mobility, and Electreon to support EV fleet operations, maintenance manpower, and sustainable transit projects.",
+      "We work with industry leaders including Olectra, Evey Trans, Varde Mobility, and Electreon to support EV fleet operations, maintenance manpower, and sustainable transit projects.",
   },
   {
     question: "Where is Dada Green E-Mobility located and what regions do you serve?",

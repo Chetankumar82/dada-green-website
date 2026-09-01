@@ -19,7 +19,7 @@ const serviceLinks = [
   { name: "24×7 Rapid Support", href: "/services" },
 ];
 
-const partnerNames = ["Olectra", "Envy Trans", "Varde Mobility", "Electreon"];
+const partnerNames = ["Olectra", "Evey Trans", "Varde Mobility", "Electreon"];
 
 export default function Footer() {
   return (
@@ -50,7 +50,7 @@ export default function Footer() {
             </Link>
 
             <p className="mt-5 text-sm leading-6 text-slate-700">
-              <strong>Dada Green E-Mobility LLP</strong> delivers end-to-end electric bus fleet operations, <strong>Maintenance Manpower Service</strong>, depot management, and trained driver deployment across India.
+              Dada Green E-Mobility LLP delivers end-to-end electric bus fleet operations, maintenance manpower services, depot management, and trained driver deployment across India.
             </p>
 
             {/* Trusted by chips */}

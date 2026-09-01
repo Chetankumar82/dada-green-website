@@ -10,7 +10,7 @@ const partners = [
     tag: "EV Partner",
   },
   {
-    name: "Envy Trans",
+    name: "Evey Trans",
     description: "Green Transportation & Transit Operations",
     tag: "Transit Partner",
   },

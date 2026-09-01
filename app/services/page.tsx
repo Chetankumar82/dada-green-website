@@ -47,7 +47,7 @@ const detailedServices = [
       "Depot Workshop & Bay Technical Upkeep",
       "24×7 Night-Shift Servicing & Breakdown Response",
     ],
-    trustedNote: "Trusted by Olectra, Envy Trans, Varde Mobility, and Electreon",
+    trustedNote: "Trusted by Olectra, Evey Trans, Varde Mobility, and Electreon",
   },
   {
     number: "03",
@@ -158,7 +158,7 @@ export default function ServicesPage() {
             </h1>
 
             <p className="mt-5 max-w-2xl text-base sm:text-lg leading-7 sm:leading-8 text-slate-700 md:text-xl">
-              Dada Green E-Mobility provides comprehensive electric bus fleet operations, <strong>Maintenance Manpower Service</strong>, depot management, driver deployment, and charging infrastructure coordination across India.
+              Dada Green E-Mobility provides comprehensive electric bus fleet operations, maintenance manpower services, depot management, driver deployment, and charging infrastructure coordination across India.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">

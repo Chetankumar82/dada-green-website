@@ -70,7 +70,7 @@ export default function AboutSection() {
             </h2>
 
             <p className="mt-5 sm:mt-7 text-base sm:text-lg leading-7 sm:leading-8 text-slate-700">
-              <strong>Dada Green E-Mobility LLP</strong> is an electric mobility operations company focused on helping transport operators run their EV fleets safely, efficiently, and reliably.
+              Dada Green E-Mobility LLP is an electric mobility operations company focused on helping transport operators run their EV fleets safely, efficiently, and reliably.
             </p>
 
             <p className="mt-4 sm:mt-5 text-sm sm:text-base leading-6 sm:leading-7 text-slate-600">

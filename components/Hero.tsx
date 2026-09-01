@@ -35,9 +35,8 @@ export default function Hero() {
               </span>
             </h1>
 
-            {/* Description */}
             <p className="mt-5 max-w-2xl text-base sm:text-lg leading-7 sm:leading-8 text-slate-700">
-              <strong>Dada Green E-Mobility</strong> delivers end-to-end electric bus fleet operations, dedicated <strong>Maintenance Manpower Service</strong>, depot management, trained driver deployment, and charging support across India.
+              Dada Green E-Mobility delivers end-to-end electric bus fleet operations, dedicated maintenance manpower services, depot management, trained driver deployment, and charging support across India.
             </p>
 
             {/* Action Buttons */}

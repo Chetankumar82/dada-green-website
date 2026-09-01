@@ -141,7 +141,7 @@ export default function AboutPage() {
             </h1>
 
             <p className="mt-5 max-w-2xl text-base sm:text-lg leading-7 sm:leading-8 text-slate-700 md:text-xl">
-              <strong>Dada Green E-Mobility LLP</strong> is working at the forefront of India&apos;s electric mobility revolution. Headquartered in Mansa (Gujarat), we provide end-to-end electric bus fleet operations, dedicated <strong>Maintenance Manpower Service</strong>, depot management, and trained driver deployment.
+              Dada Green E-Mobility LLP is working at the forefront of India&apos;s electric mobility revolution. Headquartered in Mansa (Gujarat), we provide end-to-end electric bus fleet operations, dedicated maintenance manpower services, depot management, and trained driver deployment.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -235,7 +235,7 @@ export default function AboutPage() {
               </p>
 
               <p className="mt-4 text-sm sm:text-base leading-6 sm:leading-7 text-slate-600">
-                Today, Dada Green manages electric fleets and maintenance manpower across major municipal and private transit routes in Gujarat and Maharashtra, trusted by leading partners including <strong>Olectra, Envy Trans, Varde Mobility, and Electreon</strong>.
+                Today, Dada Green manages electric fleets and maintenance manpower across major municipal and private transit routes in Gujarat and Maharashtra, trusted by leading partners including Olectra, Evey Trans, Varde Mobility, and Electreon.
               </p>
             </motion.div>
 
