@@ -254,7 +254,7 @@ export default function AboutPage() {
               </p>
 
               <p className="mt-4 text-sm sm:text-base leading-6 sm:leading-7 text-slate-600">
-                Today, Dada Green manages electric fleets and maintenance manpower across major municipal and private transit routes in Gujarat and Maharashtra, trusted by leading partners including Olectra, Evey Trans, Varde Mobility, and Electreon.
+                Today, Dada Green manages electric fleets and maintenance manpower across major municipal and private transit routes in Gujarat and Maharashtra, trusted by leading partners including Olectra, Evey Trans, GSRTC, and Varde Mobility.
               </p>
             </motion.div>
 

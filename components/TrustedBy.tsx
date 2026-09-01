@@ -24,11 +24,6 @@ const partners = [
     description: "Electric Mobility Solutions",
     tag: "Mobility Partner",
   },
-  {
-    name: "Electreon",
-    description: "Wireless EV Charging & Infrastructure",
-    tag: "Infrastructure Partner",
-  },
 ];
 
 export default function TrustedBy() {
@@ -44,9 +39,9 @@ export default function TrustedBy() {
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-600/25 bg-emerald-100/90 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-emerald-900 shadow-sm">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-600/20 bg-emerald-100/70 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-emerald-800 shadow-sm">
             <Sparkles size={13} className="text-emerald-700" />
-            <span>Trusted By Industry Leaders</span>
+            <span>Trusted Partnerships</span>
           </div>
 
           <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-bold text-slate-950">
@@ -59,7 +54,7 @@ export default function TrustedBy() {
         </motion.div>
 
         {/* Partners Grid */}
-        <div className="mt-8 sm:mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 sm:gap-5">
+        <div className="mt-8 sm:mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
           {partners.map((partner, index) => (
             <motion.div
               key={partner.name}

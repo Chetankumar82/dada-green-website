@@ -16,7 +16,7 @@ export default function Home() {
       {/* 1. Split Hero with Live Telemetry Card */}
       <Hero />
 
-      {/* 2. Enterprise Partners Validation Strip (Olectra, Evey Trans, GSRTC, Varde, Electreon) */}
+      {/* 2. Enterprise Partners Validation Strip (Olectra, Evey Trans, GSRTC, Varde Mobility) */}
       <TrustedBy />
 
       {/* 3. Who We Are & Overview */}

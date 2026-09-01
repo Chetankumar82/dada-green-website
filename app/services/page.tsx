@@ -47,7 +47,7 @@ const detailedServices = [
       "Depot Workshop & Bay Technical Upkeep",
       "24×7 Night-Shift Servicing & Breakdown Response",
     ],
-    trustedNote: "Trusted by Olectra, Evey Trans, Varde Mobility, and Electreon",
+    trustedNote: "Trusted by Olectra, Evey Trans, GSRTC, and Varde Mobility",
   },
   {
     number: "03",

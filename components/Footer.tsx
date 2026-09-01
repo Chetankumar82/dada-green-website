@@ -22,7 +22,7 @@ const serviceLinks = [
   { name: "24×7 Rapid Support", href: "/services" },
 ];
 
-const partnerNames = ["Olectra", "Evey Trans", "GSRTC", "Varde Mobility", "Electreon"];
+const partnerNames = ["Olectra", "Evey Trans", "GSRTC", "Varde Mobility"];
 
 export default function Footer() {
   return (
