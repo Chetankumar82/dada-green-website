@@ -4,9 +4,12 @@ import { Mail, Phone, MapPin, ArrowRight, ShieldCheck, Clock } from "lucide-reac
 
 const quickLinks = [
   { name: "Home", href: "/" },
-  { name: "About Us & Leadership", href: "/about" },
   { name: "Services & Capabilities", href: "/services" },
-  { name: "Project Gallery", href: "/gallery" },
+  { name: "Our Projects & Operations", href: "/projects" },
+  { name: "Safety & Compliance", href: "/safety" },
+  { name: "Careers (Join Our Team)", href: "/careers" },
+  { name: "Fleet Gallery", href: "/gallery" },
+  { name: "About Us & Leadership", href: "/about" },
   { name: "Contact & Headquarters", href: "/contact" },
 ];
 
@@ -19,7 +22,7 @@ const serviceLinks = [
   { name: "24×7 Rapid Support", href: "/services" },
 ];
 
-const partnerNames = ["Olectra", "Evey Trans", "Varde Mobility", "Electreon"];
+const partnerNames = ["Olectra", "Evey Trans", "GSRTC", "Varde Mobility", "Electreon"];
 
 export default function Footer() {
   return (

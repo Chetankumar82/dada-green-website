@@ -20,24 +20,43 @@ import { motion } from "framer-motion";
 const leadership = [
   {
     name: "Mrs. Rinaben Chaudhari",
-    role: "Co-Founder",
+    role: "Founder & Managing Partner",
     initials: "RC",
     description:
-      "Providing strategic direction, governance, and supporting the long-term vision of Dada Green E-Mobility in sustainable transit.",
+      "Providing foundational strategic leadership, statutory governance, and driving the long-term vision of zero-emission transit operations across India.",
+    expertise: "Corporate Governance & Strategic Vision",
   },
   {
     name: "Mr. Ajaybhai Chaudhari",
-    role: "Co-Founder",
+    role: "Co-Founder & Executive Director",
     initials: "AC",
     description:
-      "Focused on operational expansion, partnership development with EV OEMs, and institutional service excellence across India.",
+      "Spearheading strategic expansions, public transit authority partnerships, EV OEM alliances, and nationwide commercial service contracts.",
+    expertise: "Fleet Scale & Client Partnerships",
   },
   {
     name: "Mr. Dineshbhai Chaudhari",
-    role: "General Manager",
+    role: "General Manager & Operations Head",
     initials: "DC",
     description:
-      "Leading nationwide day-to-day operations, maintenance manpower mobilization, and ensuring disciplined depot execution.",
+      "Overseeing daily route operations, 600+ deployed personnel, depot mobilization, fleet availability KPIs, and on-ground transit execution.",
+    expertise: "Transit Operations & Workforce Mobilization",
+  },
+  {
+    name: "Technical & Workshop Lead",
+    role: "Head of EV Technical Services",
+    initials: "TL",
+    description:
+      "Directing preventive maintenance schedules, high-voltage battery diagnostic SOPs, workshop bay toolings, and rapid breakdown recovery SLAs.",
+    expertise: "EV Powertrain & High-Voltage Systems",
+  },
+  {
+    name: "HR & Compliance Head",
+    role: "Head of HR & Statutory Compliance",
+    initials: "HR",
+    description:
+      "Managing continuous recruitment, driver background vetting, biometric attendance, PF & ESIC statutory audits, and workforce welfare.",
+    expertise: "Manpower Deployment & Labor Law Compliance",
   },
 ];
 
@@ -387,6 +406,10 @@ export default function AboutPage() {
                     {leader.name}
                   </h3>
 
+                  <div className="mt-1.5 text-xs font-semibold text-emerald-700">
+                    {leader.expertise}
+                  </div>
+
                   <p className="mt-3 text-sm leading-6 text-slate-600">
                     {leader.description}
                   </p>
@@ -394,7 +417,7 @@ export default function AboutPage() {
 
                 <div className="mt-6 pt-4 border-t border-slate-100 text-xs font-semibold text-emerald-700 flex items-center gap-1.5">
                   <CheckCircle2 size={14} />
-                  <span>Dada Green Executive Team</span>
+                  <span>Executive Leadership</span>
                 </div>
               </motion.div>
             ))}

@@ -15,6 +15,11 @@ const partners = [
     tag: "Transit Partner",
   },
   {
+    name: "GSRTC",
+    description: "State Road Transport Corporation Operations",
+    tag: "Public Transit",
+  },
+  {
     name: "Varde Mobility",
     description: "Electric Mobility Solutions",
     tag: "Mobility Partner",
@@ -54,7 +59,7 @@ export default function TrustedBy() {
         </motion.div>
 
         {/* Partners Grid */}
-        <div className="mt-8 sm:mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
+        <div className="mt-8 sm:mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 sm:gap-5">
           {partners.map((partner, index) => (
             <motion.div
               key={partner.name}
