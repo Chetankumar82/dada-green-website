@@ -194,7 +194,7 @@ export default function GalleryPage() {
                   <ShieldCheck size={13} className="text-emerald-700" /> Depot Maintenance
                 </span>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 border border-emerald-200 shadow-sm">
-                  <Users size={13} className="text-emerald-700" /> 600+ Skilled Crew
+                  <Users size={13} className="text-emerald-700" /> 1000+ Skilled Crew
                 </span>
               </div>
             </motion.div>
@@ -217,6 +217,7 @@ export default function GalleryPage() {
                     alt="Dada Green Operations"
                     fill
                     priority
+                    unoptimized
                     className="object-cover"
                     sizes="300px"
                   />
@@ -232,6 +233,7 @@ export default function GalleryPage() {
                     alt="Dada Green Maintenance"
                     fill
                     priority
+                    unoptimized
                     className="object-cover"
                     sizes="300px"
                   />
@@ -247,6 +249,7 @@ export default function GalleryPage() {
                     alt="Dada Green Crew"
                     fill
                     priority
+                    unoptimized
                     className="object-cover"
                     sizes="300px"
                   />
@@ -262,6 +265,7 @@ export default function GalleryPage() {
                     alt="Dada Green Charging Infrastructure"
                     fill
                     priority
+                    unoptimized
                     className="object-cover"
                     sizes="300px"
                   />
@@ -401,7 +405,7 @@ export default function GalleryPage() {
                       alt={`Dada Green Moment #${moment.numberString}`}
                       fill
                       loading={index < 8 ? "eager" : "lazy"}
-                      quality={75}
+                      unoptimized
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                       sizes={
                         isHero
@@ -476,7 +480,7 @@ export default function GalleryPage() {
                         width={800}
                         height={600}
                         loading={index < 8 ? "eager" : "lazy"}
-                        quality={80}
+                        unoptimized
                         className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       />
@@ -537,7 +541,7 @@ export default function GalleryPage() {
                     alt={`Dada Green Moment #${moment.numberString}`}
                     fill
                     loading={index < 8 ? "eager" : "lazy"}
-                    quality={75}
+                    unoptimized
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
@@ -573,6 +577,7 @@ export default function GalleryPage() {
                       alt={`Moment #${moment.numberString}`}
                       fill
                       loading="lazy"
+                      unoptimized
                       className="object-cover transition duration-700 group-hover:scale-105"
                       sizes="420px"
                     />
@@ -716,7 +721,7 @@ export default function GalleryPage() {
                 alt={`Dada Green E-Mobility Moment #${currentMoment.numberString}`}
                 fill
                 priority
-                quality={92}
+                unoptimized
                 className="object-contain drop-shadow-2xl select-none"
                 sizes="95vw"
               />
@@ -748,6 +753,7 @@ export default function GalleryPage() {
                       src={thumb.src}
                       alt={`Thumbnail #${thumb.numberString}`}
                       fill
+                      unoptimized
                       className="object-cover"
                       sizes="70px"
                     />

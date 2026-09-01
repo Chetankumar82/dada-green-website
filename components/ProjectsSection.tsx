@@ -2,209 +2,313 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import {
   Building2,
   Bus,
   Users,
   MapPin,
   ArrowRight,
-  ShieldCheck,
-  CheckCircle2,
   Sparkles,
   Zap,
+  Activity,
+  ChevronRight,
+  ChevronLeft,
+  Play,
+  Pause,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import CountUp from "react-countup";
 import { operationalProjects } from "@/data/projectsData";
 
 export default function ProjectsSection() {
-  const [selectedState, setSelectedState] = useState<"All" | "Gujarat" | "Maharashtra">("All");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const filteredProjects =
-    selectedState === "All"
-      ? operationalProjects
-      : operationalProjects.filter((p) => p.state === selectedState);
+  const activeProject = operationalProjects[currentIndex];
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % operationalProjects.length);
+  }, []);
+
+  const handlePrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + operationalProjects.length) % operationalProjects.length);
+  }, []);
+
+  // Auto-cycle timer (5 seconds per project)
+  useEffect(() => {
+    if (!isAutoPlaying || isHovered) {
+      if (timerRef.current) clearInterval(timerRef.current);
+      return;
+    }
+
+    timerRef.current = setInterval(() => {
+      handleNext();
+    }, 5000);
+
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [isAutoPlaying, isHovered, handleNext]);
 
   return (
-    <section className="relative overflow-hidden bg-[#f3fbf6] py-20 sm:py-28">
-      {/* Ambient background glows */}
-      <div className="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-emerald-300/25 blur-3xl" />
-      <div className="pointer-events-none absolute -left-32 bottom-20 h-96 w-96 rounded-full bg-emerald-400/20 blur-3xl" />
+    <section
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative overflow-hidden bg-[#f3fbf6] py-14 sm:py-16"
+    >
+      {/* Background ambient lighting */}
+      <div className="pointer-events-none absolute -right-32 top-10 h-80 w-80 rounded-full bg-emerald-300/20 blur-3xl" />
+      <div className="pointer-events-none absolute -left-32 bottom-10 h-80 w-80 rounded-full bg-emerald-400/15 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-10 border-b border-emerald-200/70"
-        >
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-600/25 bg-emerald-100/90 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-emerald-900 shadow-sm">
-              <Sparkles size={13} className="text-emerald-700" />
-              <span>Current Operations & Footprint</span>
+        {/* Header Bar with Live Indicator & Controls */}
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pb-6 border-b border-emerald-200/70">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-600/25 bg-emerald-100/90 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-emerald-900 shadow-xs">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600" />
+              </span>
+              <span>Live Regional Operations</span>
             </div>
 
-            <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-950">
+            <h2 className="mt-2.5 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-950">
               Our Active Projects
             </h2>
 
-            <p className="mt-3 text-base sm:text-lg leading-7 text-slate-600">
-              Demonstrating on-ground operational experience across high-density electric bus corridors and depot facilities in Gujarat and Maharashtra.
+            <p className="mt-1 text-xs sm:text-sm text-slate-600">
+              Select or auto-preview transit projects across Gujarat and Maharashtra.
             </p>
           </div>
 
-          {/* State Filter Controls & Link */}
-          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
-            <div className="flex rounded-full bg-white p-1 border border-emerald-200/80 shadow-xs">
-              {(["All", "Gujarat", "Maharashtra"] as const).map((st) => (
-                <button
-                  key={st}
-                  type="button"
-                  onClick={() => setSelectedState(st)}
-                  className={`rounded-full px-4 py-1.5 text-xs font-bold transition-all cursor-pointer ${
-                    selectedState === st
-                      ? "bg-emerald-600 text-white shadow-sm"
-                      : "text-slate-600 hover:text-slate-950"
-                  }`}
-                >
-                  {st}
-                </button>
-              ))}
+          {/* Interactive Navigation Controls */}
+          <div className="flex items-center gap-2.5 shrink-0">
+            {/* AutoPlay Toggle */}
+            <button
+              type="button"
+              onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+              title={isAutoPlaying ? "Pause Auto-Cycle" : "Play Auto-Cycle"}
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-white border border-emerald-200/80 text-emerald-800 hover:bg-emerald-50 shadow-2xs transition cursor-pointer"
+            >
+              {isAutoPlaying ? <Pause size={14} /> : <Play size={14} className="ml-0.5" />}
+            </button>
+
+            {/* Prev / Next Buttons */}
+            <div className="flex rounded-full bg-white p-1 border border-emerald-200/80 shadow-2xs">
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Previous project"
+                className="flex h-7 w-7 items-center justify-center rounded-full text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 transition cursor-pointer"
+              >
+                <ChevronLeft size={16} />
+              </button>
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Next project"
+                className="flex h-7 w-7 items-center justify-center rounded-full text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 transition cursor-pointer"
+              >
+                <ChevronRight size={16} />
+              </button>
             </div>
 
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 rounded-full bg-white border border-emerald-200/90 px-5 py-2.5 text-xs font-bold text-slate-800 shadow-xs hover:bg-emerald-50 hover:text-emerald-900 transition"
+              className="inline-flex items-center gap-1.5 rounded-full bg-white border border-emerald-300 px-4 py-2 text-xs font-bold text-emerald-900 shadow-2xs hover:bg-emerald-50 transition"
             >
-              <span>Full Details</span>
-              <ArrowRight size={14} />
+              <span>All Projects</span>
+              <ArrowRight size={13} />
             </Link>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Projects Grid */}
-        <div className="mt-10 sm:mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              whileHover={{ y: -6 }}
-              className="group flex flex-col justify-between overflow-hidden rounded-3xl bg-white border border-emerald-100/90 shadow-sm transition-all duration-300 hover:border-emerald-300 hover:shadow-xl"
-            >
-              <div>
-                {/* Project Image Banner */}
-                <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950">
-                  <Image
-                    src={project.image}
-                    alt={project.name}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 600px"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        {/* Compact Animated Master-Detail Spotlight */}
+        <div className="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+          
+          {/* Left Column: Interactive Project Selector with Progress Indicators (lg:col-span-5) */}
+          <div className="lg:col-span-5 flex flex-col gap-2.5">
+            {operationalProjects.map((project, index) => {
+              const isSelected = index === currentIndex;
 
-                  {/* Badges on Image */}
-                  <div className="absolute top-4 inset-x-4 flex items-center justify-between">
-                    <span className="rounded-full bg-emerald-600/90 backdrop-blur-md px-3 py-1 text-xs font-bold text-white shadow-sm">
-                      {project.category}
-                    </span>
-
-                    <span className="flex items-center gap-1.5 rounded-full bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-mono font-bold text-emerald-300 border border-white/10">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      {project.status}
-                    </span>
-                  </div>
-
-                  <div className="absolute bottom-3 left-4 right-4 text-white">
-                    <div className="flex items-center gap-2 text-xs font-semibold text-emerald-200">
-                      <MapPin size={13} />
-                      <span>{project.city}, {project.state}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Project Content */}
-                <div className="p-6 sm:p-7">
-                  <div className="flex items-center justify-between text-xs font-semibold text-emerald-800 bg-emerald-50/80 px-3 py-1.5 rounded-xl border border-emerald-200/60 mb-3">
-                    <span>Client / Partner:</span>
-                    <strong className="text-slate-900">{project.client}</strong>
-                  </div>
-
-                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-950 group-hover:text-emerald-800 transition-colors">
-                    {project.name}
-                  </h3>
-
-                  <p className="mt-2.5 text-sm leading-6 text-slate-600">
-                    {project.description}
-                  </p>
-
-                  {/* Operational Metrics Pill Bar */}
-                  <div className="mt-5 grid grid-cols-2 gap-3 pt-4 border-t border-slate-100">
-                    <div className="flex items-center gap-3 rounded-2xl bg-[#edf7f1] p-3 border border-emerald-100">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-emerald-700 shadow-xs shrink-0">
-                        <Bus size={20} />
-                      </div>
-                      <div>
-                        <div className="text-lg font-extrabold text-slate-950 leading-tight">
-                          {project.busesOperated}+
-                        </div>
-                        <div className="text-[11px] font-semibold text-slate-600">
-                          EV Buses Operated
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-3 rounded-2xl bg-[#edf7f1] p-3 border border-emerald-100">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-emerald-700 shadow-xs shrink-0">
-                        <Users size={20} />
-                      </div>
-                      <div>
-                        <div className="text-lg font-extrabold text-slate-950 leading-tight">
-                          {project.manpowerDeployed}+
-                        </div>
-                        <div className="text-[11px] font-semibold text-slate-600">
-                          Crew Deployed
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Depot Hub Location */}
-                  <div className="mt-4 flex items-center gap-2 text-xs font-medium text-slate-600 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200/60">
-                    <Building2 size={14} className="text-emerald-700 shrink-0" />
-                    <span><strong>Depot Hub:</strong> {project.depotLocation}</span>
-                  </div>
-
-                  {/* Key Highlights */}
-                  <div className="mt-4 space-y-1.5">
-                    {project.keyHighlights.slice(0, 2).map((hl, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
-                        <CheckCircle2 size={13} className="text-emerald-600 shrink-0" />
-                        <span>{hl}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom Footer */}
-              <div className="px-6 pb-6 pt-2">
-                <Link
-                  href="/projects"
-                  className="flex items-center justify-between w-full rounded-2xl bg-emerald-50 px-4 py-2.5 text-xs font-bold text-emerald-800 transition hover:bg-emerald-600 hover:text-white"
+              return (
+                <button
+                  key={project.id}
+                  type="button"
+                  onClick={() => {
+                    setCurrentIndex(index);
+                    setIsAutoPlaying(false);
+                  }}
+                  className={`group relative flex flex-col justify-between text-left rounded-2xl p-4 transition-all duration-300 border overflow-hidden cursor-pointer ${
+                    isSelected
+                      ? "bg-white border-emerald-400 shadow-md ring-1 ring-emerald-300/60"
+                      : "bg-white/70 border-emerald-100 hover:bg-white hover:border-emerald-200 shadow-2xs"
+                  }`}
                 >
-                  <span>Explore Operational Scope</span>
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </motion.div>
-          ))}
+                  <div className="flex items-center justify-between w-full">
+                    <div className="min-w-0 pr-3">
+                      <div className="flex items-center gap-2 text-[11px] font-bold text-emerald-800">
+                        <span className={`h-1.5 w-1.5 rounded-full ${isSelected ? "bg-emerald-500 animate-pulse" : "bg-slate-300"}`} />
+                        <span>{project.state} • {project.city}</span>
+                      </div>
+
+                      <h3 className="mt-1 text-sm font-bold text-slate-950 truncate group-hover:text-emerald-800 transition-colors">
+                        {project.name}
+                      </h3>
+
+                      <div className="mt-1.5 flex items-center gap-3 text-xs text-slate-600 font-semibold">
+                        <span className="flex items-center gap-1">
+                          <Bus size={12} className="text-emerald-700" /> {project.busesOperated}+ Buses
+                        </span>
+                        <span>•</span>
+                        <span className="flex items-center gap-1">
+                          <Users size={12} className="text-emerald-700" /> {project.manpowerDeployed}+ Crew
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl transition ${
+                      isSelected
+                        ? "bg-emerald-600 text-white shadow-xs"
+                        : "bg-emerald-50 text-emerald-700 group-hover:bg-emerald-100"
+                    }`}>
+                      <ChevronRight size={16} />
+                    </div>
+                  </div>
+
+                  {/* Animated Countdown Progress Bar when Active */}
+                  {isSelected && isAutoPlaying && !isHovered && (
+                    <motion.div
+                      key={`progress-${currentIndex}`}
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 5, ease: "linear" }}
+                      className="absolute bottom-0 left-0 h-1 bg-emerald-500 rounded-full"
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right Column: Animated Dynamic Project Spotlight Card (lg:col-span-7) */}
+          <div className="lg:col-span-7">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeProject.id}
+                initial={{ opacity: 0, x: 20, scale: 0.98 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: -20, scale: 0.98 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="flex flex-col justify-between h-full rounded-3xl bg-white border border-emerald-200/90 p-5 sm:p-6 shadow-md overflow-hidden"
+              >
+                <div>
+                  {/* Photo with Overlay and Ambient Pulsing Status */}
+                  <div className="relative aspect-[21/9] sm:aspect-[16/7] w-full rounded-2xl overflow-hidden bg-slate-950 shadow-inner">
+                    <motion.div
+                      initial={{ scale: 1.05 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                      className="relative w-full h-full"
+                    >
+                      <Image
+                        src={activeProject.image}
+                        alt={activeProject.name}
+                        fill
+                        unoptimized
+                        sizes="(max-width: 1024px) 100vw, 700px"
+                        className="object-cover"
+                        priority
+                      />
+                    </motion.div>
+                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+
+                    <div className="absolute top-3 inset-x-3 flex items-center justify-between">
+                      <span className="rounded-full bg-emerald-600/90 backdrop-blur-md px-3 py-0.5 text-xs font-bold text-white shadow-xs">
+                        {activeProject.category}
+                      </span>
+
+                      <span className="flex items-center gap-1.5 rounded-full bg-black/60 backdrop-blur-md px-2.5 py-0.5 text-xs font-mono font-bold text-emerald-300 border border-white/10">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                        </span>
+                        {activeProject.status}
+                      </span>
+                    </div>
+
+                    <div className="absolute bottom-3 left-3 right-3 text-white">
+                      <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-200">
+                        <MapPin size={13} className="text-emerald-400" />
+                        <span>{activeProject.city}, {activeProject.state}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content Details */}
+                  <div className="mt-4">
+                    <div className="flex items-center justify-between text-xs font-semibold text-emerald-900 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200/70">
+                      <span className="text-slate-600">Client / Authority:</span>
+                      <strong className="text-slate-950 font-bold">{activeProject.client}</strong>
+                    </div>
+
+                    <h3 className="mt-3 text-lg sm:text-xl font-bold tracking-tight text-slate-950">
+                      {activeProject.name}
+                    </h3>
+
+                    <p className="mt-1.5 text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
+                      {activeProject.description}
+                    </p>
+
+                    {/* 3 Metric Pills with Animated Rolling Numbers */}
+                    <div className="mt-3.5 grid grid-cols-3 gap-2">
+                      <div className="rounded-xl bg-[#edf7f1] p-2.5 text-center border border-emerald-100">
+                        <div className="text-base font-extrabold text-slate-950">
+                          <CountUp end={activeProject.busesOperated} duration={1.2} />+
+                        </div>
+                        <div className="text-[10px] font-semibold text-slate-600">EV Buses</div>
+                      </div>
+
+                      <div className="rounded-xl bg-[#edf7f1] p-2.5 text-center border border-emerald-100">
+                        <div className="text-base font-extrabold text-emerald-700">
+                          <CountUp end={activeProject.manpowerDeployed} duration={1.2} />+
+                        </div>
+                        <div className="text-[10px] font-semibold text-slate-600">Crew Deployed</div>
+                      </div>
+
+                      <div className="rounded-xl bg-[#edf7f1] p-2.5 text-center border border-emerald-100">
+                        <div className="text-base font-extrabold text-slate-950">24×7</div>
+                        <div className="text-[10px] font-semibold text-slate-600">SLA Support</div>
+                      </div>
+                    </div>
+
+                    {/* Depot Hub */}
+                    <div className="mt-3 flex items-center gap-2 text-xs font-medium text-slate-700 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200/60">
+                      <Building2 size={13} className="text-emerald-700 shrink-0" />
+                      <span className="truncate"><strong>Depot Hub:</strong> {activeProject.depotLocation}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Action Link */}
+                <div className="mt-4 pt-3 border-t border-slate-100">
+                  <Link
+                    href="/projects"
+                    className="flex items-center justify-between w-full rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-emerald-700 transition group"
+                  >
+                    <span>View Complete Operational SLA & Scope</span>
+                    <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
         </div>
 
       </div>

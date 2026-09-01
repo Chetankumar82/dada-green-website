@@ -39,7 +39,7 @@ const leadership = [
     role: "General Manager & Operations Head",
     initials: "DC",
     description:
-      "Overseeing daily route operations, 600+ deployed personnel, depot mobilization, fleet availability KPIs, and on-ground transit execution.",
+      "Overseeing daily route operations, 1000+ deployed personnel, depot mobilization, fleet availability KPIs, and on-ground transit execution.",
     expertise: "Transit Operations & Workforce Mobilization",
   },
   {
@@ -62,7 +62,7 @@ const leadership = [
 
 const peopleStats = [
   {
-    number: 600,
+    number: 1000,
     suffix: "+",
     label: "Drivers & Technicians",
     subtext: "On-ground operations & maintenance workforce",
@@ -204,7 +204,7 @@ export default function AboutPage() {
             >
               <p className="text-xs text-emerald-700 font-bold uppercase tracking-wider">Workforce</p>
               <p className="mt-1 font-bold text-slate-950 text-base sm:text-lg">
-                600+ Skilled Technicians & Drivers
+                1000+ Skilled Technicians & Drivers
               </p>
               <p className="text-xs text-slate-600 mt-1">Nationwide depot presence</p>
             </motion.div>

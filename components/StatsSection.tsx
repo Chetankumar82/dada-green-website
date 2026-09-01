@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const keyStats = [
   {
-    number: 600,
+    number: 1000,
     suffix: "+",
     label: "Trained Workforce",
     subtext: "Certified EV bus drivers, technicians & workshop supervisors",

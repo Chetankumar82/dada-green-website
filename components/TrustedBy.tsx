@@ -28,7 +28,7 @@ const partners = [
 
 export default function TrustedBy() {
   return (
-    <section className="border-y border-emerald-200/70 bg-[#edf7f1] py-14 sm:py-16">
+    <section className="border-y border-emerald-200/70 bg-[#edf7f1] py-10 sm:py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
@@ -54,7 +54,7 @@ export default function TrustedBy() {
         </motion.div>
 
         {/* Partners Grid */}
-        <div className="mt-8 sm:mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
+        <div className="mt-8 sm:mt-10 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {partners.map((partner, index) => (
             <motion.div
               key={partner.name}

@@ -80,33 +80,29 @@ export default function GallerySection() {
   // Slide animation variants
   const slideVariants = {
     enter: (dir: number) => ({
-      x: dir > 0 ? "100%" : "-100%",
+      x: dir > 0 ? 50 : -50,
       opacity: 0,
-      scale: 0.98,
     }),
     center: {
       x: 0,
       opacity: 1,
-      scale: 1,
       transition: {
-        x: { type: "spring" as const, stiffness: 280, damping: 28 },
-        opacity: { duration: 0.4 },
-        scale: { duration: 0.4 },
+        x: { type: "spring" as const, stiffness: 300, damping: 30 },
+        opacity: { duration: 0.3 },
       },
     },
     exit: (dir: number) => ({
-      x: dir > 0 ? "-100%" : "100%",
+      x: dir > 0 ? -50 : 50,
       opacity: 0,
-      scale: 0.98,
       transition: {
-        x: { type: "spring" as const, stiffness: 280, damping: 28 },
-        opacity: { duration: 0.3 },
+        x: { type: "spring" as const, stiffness: 300, damping: 30 },
+        opacity: { duration: 0.2 },
       },
     }),
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#edf7f1] py-16 sm:py-24 md:py-28 border-y border-emerald-100/90">
+    <section className="relative overflow-hidden bg-[#edf7f1] py-14 sm:py-16 border-y border-emerald-100/90">
       {/* Ambient background glow */}
       <div className="pointer-events-none absolute -right-32 top-10 h-96 w-96 rounded-full bg-emerald-300/25 blur-3xl" />
       <div className="pointer-events-none absolute -left-32 bottom-10 h-96 w-96 rounded-full bg-emerald-400/20 blur-3xl" />
@@ -119,7 +115,7 @@ export default function GallerySection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-8 sm:pb-10 border-b border-emerald-200/70"
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-6 sm:pb-8 border-b border-emerald-200/70"
         >
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-600/25 bg-emerald-100/90 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-emerald-900 shadow-sm">
@@ -127,31 +123,31 @@ export default function GallerySection() {
               <span>Operations Showcase</span>
             </div>
 
-            <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-950">
+            <h2 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-950">
               Fleet & Operations Gallery
             </h2>
 
-            <p className="mt-3 text-base sm:text-lg leading-7 text-slate-600">
+            <p className="mt-1.5 text-xs sm:text-sm leading-6 text-slate-600">
               An authentic glimpse into Dada Green&apos;s electric bus fleets, depot maintenance bays, certified drivers, and zero-emission transit operations.
             </p>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-2.5 shrink-0">
             {/* Auto-Slide Play/Pause Toggle */}
             <button
               type="button"
               onClick={() => setIsPlaying((prev) => !prev)}
-              className="flex items-center gap-2 rounded-full border border-emerald-200 bg-white px-4 py-3 text-xs font-bold text-slate-800 shadow-sm transition hover:bg-emerald-50 hover:text-emerald-900 cursor-pointer"
+              className="flex items-center gap-1.5 rounded-full border border-emerald-200 bg-white px-3.5 py-2 text-xs font-bold text-slate-800 shadow-2xs transition hover:bg-emerald-50 hover:text-emerald-900 cursor-pointer"
               title={isPlaying ? "Pause Auto-Slide" : "Play Auto-Slide"}
             >
               {isPlaying ? (
                 <>
-                  <Pause size={14} className="text-emerald-700" />
+                  <Pause size={13} className="text-emerald-700" />
                   <span className="hidden sm:inline">Pause</span>
                 </>
               ) : (
                 <>
-                  <Play size={14} className="text-emerald-700" />
+                  <Play size={13} className="text-emerald-700" />
                   <span className="hidden sm:inline">Play</span>
                 </>
               )}
@@ -159,10 +155,10 @@ export default function GallerySection() {
 
             <Link
               href="/gallery"
-              className="group inline-flex items-center gap-2.5 rounded-full bg-emerald-600 px-6 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm font-bold text-white shadow-md transition duration-300 hover:bg-emerald-700 hover:scale-105"
+              className="group inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-md transition duration-300 hover:bg-emerald-700 hover:scale-102"
             >
               <span>View All 48 Photos</span>
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
         </motion.div>
@@ -171,13 +167,13 @@ export default function GallerySection() {
             MAIN CLEAN SLIDER CANVAS (ZERO TEXT OVERLAYS)
         ======================================================= */}
         <div
-          className="mt-8 sm:mt-10 relative"
+          className="mt-6 sm:mt-8 relative"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           {/* Main Slide Image Box */}
-          <div className="relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden rounded-3xl border border-emerald-200/90 bg-slate-950 shadow-2xl">
-            <AnimatePresence initial={false} custom={direction} mode="popLayout">
+          <div className="relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden rounded-3xl border border-emerald-200/90 bg-slate-950 shadow-xl">
+            <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
                 key={currentIndex}
                 custom={direction}
@@ -185,7 +181,18 @@ export default function GallerySection() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="absolute inset-0 cursor-pointer"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={(e, { offset, velocity }) => {
+                  const swipe = Math.abs(offset.x) * velocity.x;
+                  if (swipe < -100 || offset.x < -50) {
+                    handleNext();
+                  } else if (swipe > 100 || offset.x > 50) {
+                    handlePrev();
+                  }
+                }}
+                className="absolute inset-0 cursor-grab active:cursor-grabbing w-full h-full"
                 onClick={() => setLightboxOpen(true)}
               >
                 {/* Background ambient glow matching current image */}
@@ -194,8 +201,8 @@ export default function GallerySection() {
                   alt=""
                   fill
                   priority
-                  quality={30}
-                  className="object-cover blur-2xl scale-110 opacity-40 select-none pointer-events-none"
+                  unoptimized
+                  className="object-cover blur-2xl scale-110 opacity-35 select-none pointer-events-none"
                   aria-hidden="true"
                 />
 
@@ -205,23 +212,23 @@ export default function GallerySection() {
                   alt={currentPhoto.alt}
                   fill
                   priority
-                  quality={95}
-                  className="object-contain relative z-10 select-none"
+                  unoptimized
+                  className="object-contain z-10 select-none pointer-events-none"
                   sizes="(max-width: 768px) 100vw, 1400px"
                 />
 
                 {/* Subtle top fullscreen button */}
-                <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20">
+                <div className="absolute top-3 right-3 sm:top-5 sm:right-5 z-20">
                   <button
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
                       setLightboxOpen(true);
                     }}
-                    className="flex items-center gap-1.5 rounded-full bg-black/40 hover:bg-emerald-600 text-white backdrop-blur-md px-3.5 py-1.5 text-xs font-bold transition duration-300 shadow-md border border-white/20 cursor-pointer hover:scale-105"
+                    className="flex items-center gap-1.5 rounded-full bg-black/50 hover:bg-emerald-600 text-white backdrop-blur-md px-3 py-1.5 text-xs font-bold transition duration-300 shadow-md border border-white/20 cursor-pointer hover:scale-105"
                     title="View Fullscreen"
                   >
-                    <Expand size={14} />
+                    <Expand size={13} />
                     <span className="hidden sm:inline">Fullscreen</span>
                   </button>
                 </div>
@@ -235,10 +242,10 @@ export default function GallerySection() {
                 e.stopPropagation();
                 handlePrev();
               }}
-              className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 flex h-11 w-11 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-black/40 hover:bg-emerald-600 text-white backdrop-blur-md border border-white/20 transition duration-300 shadow-2xl hover:scale-110 cursor-pointer"
+              className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-black/50 hover:bg-emerald-600 text-white backdrop-blur-md border border-white/20 transition duration-300 shadow-xl hover:scale-110 cursor-pointer"
               aria-label="Previous Slide"
             >
-              <ChevronLeft size={24} />
+              <ChevronLeft size={22} />
             </button>
 
             {/* Right Next Arrow */}
@@ -248,10 +255,10 @@ export default function GallerySection() {
                 e.stopPropagation();
                 handleNext();
               }}
-              className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 flex h-11 w-11 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-black/40 hover:bg-emerald-600 text-white backdrop-blur-md border border-white/20 transition duration-300 shadow-2xl hover:scale-110 cursor-pointer"
+              className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-black/50 hover:bg-emerald-600 text-white backdrop-blur-md border border-white/20 transition duration-300 shadow-xl hover:scale-110 cursor-pointer"
               aria-label="Next Slide"
             >
-              <ChevronRight size={24} />
+              <ChevronRight size={22} />
             </button>
 
             {/* Auto-Slide Progress Bar */}
@@ -271,9 +278,9 @@ export default function GallerySection() {
           {/* =======================================================
               CLEAN THUMBNAILS & COUNTER
           ======================================================= */}
-          <div className="mt-4 sm:mt-6 flex items-center justify-between gap-4">
+          <div className="mt-4 flex items-center justify-between gap-4">
             {/* Thumbnail Strip */}
-            <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-none max-w-full">
+            <div className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto pb-2 scrollbar-none max-w-full">
               {bestGalleryPhotos.map((item, idx) => {
                 const isActive = idx === currentIndex;
 
@@ -285,7 +292,7 @@ export default function GallerySection() {
                       setDirection(idx > currentIndex ? 1 : -1);
                       setCurrentIndex(idx);
                     }}
-                    className={`group relative h-14 w-20 sm:h-16 sm:w-26 shrink-0 overflow-hidden rounded-2xl border-2 transition-all duration-300 cursor-pointer ${
+                    className={`group relative h-12 w-18 sm:h-14 sm:w-22 shrink-0 overflow-hidden rounded-xl border-2 transition-all duration-300 cursor-pointer ${
                       isActive
                         ? "border-emerald-600 shadow-md shadow-emerald-700/25 scale-105"
                         : "border-transparent opacity-60 hover:opacity-100 hover:scale-102"
@@ -295,6 +302,7 @@ export default function GallerySection() {
                       src={item.src}
                       alt={item.alt}
                       fill
+                      unoptimized
                       sizes="120px"
                       className="object-cover"
                     />
@@ -307,7 +315,7 @@ export default function GallerySection() {
             </div>
 
             {/* Slide Index Counter */}
-            <div className="hidden lg:flex items-center gap-2 text-xs font-mono font-bold text-emerald-900 bg-white px-4 py-2.5 rounded-full border border-emerald-200 shadow-sm shrink-0">
+            <div className="hidden lg:flex items-center gap-2 text-xs font-mono font-bold text-emerald-900 bg-white px-3.5 py-2 rounded-full border border-emerald-200 shadow-2xs shrink-0">
               <span className="text-emerald-700 font-extrabold">{String(currentIndex + 1).padStart(2, "0")}</span>
               <span className="text-slate-400">/</span>
               <span className="text-slate-600">{String(bestGalleryPhotos.length).padStart(2, "0")}</span>
@@ -354,7 +362,7 @@ export default function GallerySection() {
                 src={currentPhoto.src}
                 alt={currentPhoto.alt}
                 fill
-                quality={95}
+                unoptimized
                 className="object-contain"
                 sizes="1400px"
               />

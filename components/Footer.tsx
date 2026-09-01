@@ -177,7 +177,7 @@ export default function Footer() {
               <ShieldCheck size={14} className="text-emerald-700" /> 100% Zero-Emission
             </span>
             <span>•</span>
-            <span>600+ Skilled Workforce</span>
+            <span>1000+ Skilled Workforce</span>
             <span>•</span>
             <span>24×7 Operations Support</span>
           </div>

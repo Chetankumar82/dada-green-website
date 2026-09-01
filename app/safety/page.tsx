@@ -84,7 +84,7 @@ const safetyProtocols = [
       },
       {
         title: "Provident Fund (PF) & ESIC Medical Benefits",
-        desc: "All 600+ deployed drivers, technicians, and depot staff are covered under active PF and ESIC healthcare schemes, ensuring comprehensive family welfare.",
+        desc: "All 1000+ deployed drivers, technicians, and depot staff are covered under active PF and ESIC healthcare schemes, ensuring comprehensive family welfare.",
       },
       {
         title: "Workmen Compensation & Group Accidental Insurance",

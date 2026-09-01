@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Careers & Job Openings | Electric Bus Drivers, Technicians & Staff",
   description:
-    "Join Dada Green E-Mobility's 600+ workforce. We are hiring Electric Bus Drivers, EV Maintenance Technicians, Auto Electricians, Workshop Supervisors, and Depot Managers in Gujarat & Maharashtra.",
+    "Join Dada Green E-Mobility's 1000+ workforce. We are hiring Electric Bus Drivers, EV Maintenance Technicians, Auto Electricians, Workshop Supervisors, and Depot Managers in Gujarat & Maharashtra.",
   keywords: [
     "Electric Bus Driver Jobs",
     "EV Technician Jobs Gujarat",

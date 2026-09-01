@@ -202,7 +202,7 @@ export default function ServicesPage() {
             >
               <p className="text-xs text-emerald-700 font-bold uppercase tracking-wider">Workforce & Manpower</p>
               <p className="mt-1 font-bold text-slate-950 text-base sm:text-lg">
-                600+ Skilled Technicians & Drivers
+                1000+ Skilled Technicians & Drivers
               </p>
               <p className="text-xs text-slate-600 mt-1">Certified, verified & trained</p>
             </motion.div>
