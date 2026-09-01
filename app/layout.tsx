@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollToTopOnNav from "@/components/ScrollToTopOnNav";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -170,6 +171,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-[#f3fbf6] font-sans text-slate-900 selection:bg-emerald-200 selection:text-emerald-900">
+        <ScrollToTopOnNav />
         <Navbar />
         {children}
         <Footer />
